@@ -36,17 +36,20 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    # Applications
+    'accounts',
+    'projects',
+    'tasks',
+
+    
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    # Applications
-    'accounts',
-    'projects',
-    'tasks',
 ]
 
 MIDDLEWARE = [
@@ -77,6 +80,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'projecttracker.wsgi.application'
+
+AUTH_USER_MODEL  = 'accounts.Account'
 
 
 # Database
