@@ -3,16 +3,19 @@ from django.conf import settings
 from projects.models import Project
 
 STATUS = [
-    ("ENDED", "ended"),
-    ("REVIEW", "review"),
-    ("IN_PROGRESS", "in progress"),     
-    ("STARTED", "started")
+    ('STARTED', 'started'),
+    ('IN_PROGRESS', 'in progress'), 
+    ('REVIEW', 'review'),
+    ('ENDED', 'ended'),
+    
+       
+    
 ]
 
 PRIORITY=[
-    ("HIGH","high"),
+     ("LOW","low"),
     ("MEDIUM","medium"),
-    ("LOW","low")
+    ("HIGH","high"),
 ]
 class Task(models.Model):
     name = models.CharField(max_length=100, blank=False)
@@ -30,7 +33,7 @@ class Task(models.Model):
         related_name="owned_tasks"
     )
 
-      # Person responsible for task
+    # Person responsible for task
     assigned_to = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
