@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'projects',
     'tasks',
 
-    
+
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,6 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Installed packages
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -82,6 +85,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'projecttracker.wsgi.application'
 
 AUTH_USER_MODEL  = 'accounts.Account'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 
 # Database
