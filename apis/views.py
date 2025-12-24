@@ -46,7 +46,7 @@ class ProjectListView(generics.ListCreateAPIView):
 
     # Shows projects only to project owner/creator or project members
     def get_queryset(self):
-        return Project.objects.filter(models.Q(owner=self.request.user) | models.Q(project_members=self.request.user)) 
+        return Project.objects.filter(models.Q(owner=self.request.user) | models.Q(project_members=self.request.user)) .distinct()
 
     # Allows only project owners to create and add project details
     def perform_create(self, serializer):
@@ -72,7 +72,7 @@ class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     # Shows project details only to project owner/creator or project members
     def get_queryset(self):
-        return Project.objects.filter(models.Q(owner=self.request.user) | models.Q(project_members=self.request.user)) 
+        return Project.objects.filter(models.Q(owner=self.request.user) | models.Q(project_members=self.request.user)) .distinct()
     
 # Creating class based view to see user specific objects
 # Shows project to only owners and the respective project members
