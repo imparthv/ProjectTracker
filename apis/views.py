@@ -50,10 +50,10 @@ class ProjectListView(generics.ListCreateAPIView):
 
     # Allows only project owners to create and add project details
     def perform_create(self, serializer):
-        user =self.request.user
-        if self.request.user.is_superuser == user:
-            serializer.save(owner=self.request.user)
-        raise PermissionDenied("Only Superusers can create a project")
+        if not self.request.user.is_superuser:
+            raise PermissionDenied("Only Superusers can create a project")
+        serializer.save(owner=self.request.user)
+            
 
 # Creating class based view to update specific projects
 class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
