@@ -3,10 +3,10 @@ from django.conf import settings
 
 
 STATUS = [
-    ("ENDED", "ended"),
+    ("STARTED", "started"),
+    ("IN_PROGRESS", "in progress"), 
     ("REVIEW", "review"),
-    ("IN_PROGRESS", "in progress"),     
-    ("STARTED", "started")
+    ("ENDED", "ended"),
 ]
 class Project(models.Model):
     name = models.CharField(max_length=100, blank=False)
@@ -16,6 +16,12 @@ class Project(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.PROTECT,
         related_name="owned_projects"
+    )
+    project_members = models.ManyToManyField(
+        settings.AUTH_USER_MODEL,
+        related_name="members",
+        null=True,
+        blank=True
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
